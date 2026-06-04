@@ -9,12 +9,14 @@ export default function Navbar() {
 
   // Section anchors point at the homepage so they work from any page
   // (e.g. clicking "Services" from a blog post returns home and scrolls).
+  // base is '/' locally and '/kr-connect-website/' on GitHub Pages.
+  const base = import.meta.env.BASE_URL
   const sectionLinks = [
-    { href: '/#about', label: t.nav.about },
-    { href: '/#services', label: t.nav.services },
-    { href: '/#products', label: t.nav.products },
-    { href: '/#founders', label: t.nav.founders },
-    { href: '/#contact', label: t.nav.contact },
+    { href: `${base}#about`, label: t.nav.about },
+    { href: `${base}#services`, label: t.nav.services },
+    { href: `${base}#products`, label: t.nav.products },
+    { href: `${base}#founders`, label: t.nav.founders },
+    { href: `${base}#contact`, label: t.nav.contact },
   ]
 
   const close = () => setOpen(false)
@@ -59,7 +61,7 @@ export default function Navbar() {
             </select>
           </label>
 
-          <a href="/#contact" className="btn btn--small" onClick={close}>
+          <a href={`${base}#contact`} className="btn btn--small" onClick={close}>
             {t.nav.cta}
           </a>
         </nav>

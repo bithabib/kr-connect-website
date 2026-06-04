@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react'
 import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
+// When building for GitHub Pages, the site is served from a sub-path
+// (https://bithabib.github.io/kr-connect-website/). Locally it stays at '/'.
+const base = process.env.GITHUB_PAGES ? '/kr-connect-website/' : '/'
+
 // Folder where blog posts (.md files) live.
 const postsDir = fileURLToPath(new URL('./src/blog/posts', import.meta.url))
 
@@ -16,6 +20,7 @@ function getPostSlugs() {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base,
   plugins: [react()],
   // Static site generation options (used by `vite-react-ssg build`).
   ssgOptions: {

@@ -25,6 +25,15 @@ function parseFrontmatter(raw) {
   return { data, content: match[2] }
 }
 
+// Internal links written as "/..." in markdown need the site base prefix so
+// they work on GitHub Pages (served from a sub-path). External links (https://)
+// are untouched.
+const base = import.meta.env.BASE_URL
+function withBase(html) {
+  if (base === '/') return html
+  return html.replace(/href="\/(?!\/)/g, `href="${base}`)
+}
+
 const posts = Object.entries(modules)
   .map(([path, raw]) => {
     const slug = path.split('/').pop().replace(/\.md$/, '')
@@ -35,7 +44,7 @@ const posts = Object.entries(modules)
       description: data.description || '',
       date: data.date || '',
       author: data.author || 'KR Connect Technologies',
-      html: marked.parse(content),
+      html: withBase(marked.parse(content)),
     }
   })
   // Newest first.
