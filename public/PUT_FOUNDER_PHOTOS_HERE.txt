@@ -1,0 +1,9 @@
+Place the two founder photos in THIS folder, named exactly:
+
+  founder-habib.jpg   ->  Md Habibur Rahman
+  founder-entaz.jpg   ->  Mohammad Entaz Bahar
+
+Square images (e.g. 600 x 600 pixels) look best.
+Until the photos are added, the site shows clean initials avatars automatically.
+
+You can delete this text file once the photos are in place.
